@@ -11,7 +11,7 @@ class Person < Nameable
     @parent_permission = parent_permission
   end
 
-    # getters
+  # getters
   attr_reader :id
   attr_accessor :age, :name
 
@@ -32,5 +32,4 @@ class Person < Nameable
   def of_age?
     @age >= 18
   end
-
 end
