@@ -1,6 +1,5 @@
 require_relative './name'
 
-
 class Person < Nameable
   # constructor
   def initialize(age, name = 'Unknown', parent_permission: true)
