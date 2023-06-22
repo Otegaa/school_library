@@ -19,7 +19,3 @@ class Student < Person
   end
 
 end
-
-second_student = Student.new("ss3", 24)
-second_student.classroom
-puts classR.students.count
