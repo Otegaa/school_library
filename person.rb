@@ -1,4 +1,4 @@
-require_relative './name'
+require_relative 'name'
 
 class Person < Nameable
   # getters
