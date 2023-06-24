@@ -4,9 +4,9 @@ class Person < Nameable
    # getters
   attr_reader :id, :parent_permission, :rentals
   attr_accessor :age, :name, :rentals
-  
+
   # constructor
-  def initialize(age, name = 'Unknown', parent_permission: true)
+  def initialize(age, parent_permission, name = 'Unknown')
     super()
     # instance variables
     @id = Random.rand(1..1000)
