@@ -1,6 +1,10 @@
 require_relative './name'
 
 class Person < Nameable
+   # getters
+  attr_reader :id, :parent_permission, :rentals
+  attr_accessor :age, :name, :rentals
+  
   # constructor
   def initialize(age, name = 'Unknown', parent_permission: true)
     super()
@@ -11,10 +15,6 @@ class Person < Nameable
     @parent_permission = parent_permission
     @rentals = []
   end
-
-  # getters
-  attr_reader :id
-  attr_accessor :age, :name, :rentals
 
   # public methods
 
