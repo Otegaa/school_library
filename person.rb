@@ -1,8 +1,8 @@
 require_relative './name'
 
 class Person < Nameable
-   # getters
-  attr_reader :id, :parent_permission, :rentals
+  # getters
+  attr_reader :id, :parent_permission
   attr_accessor :age, :name, :rentals
 
   # constructor

@@ -41,7 +41,7 @@ class App
     when 1
       print 'Does student have parent permission [Y/N]: '
       permission = gets.chomp.downcase == 'y'
-      student = Student.new( age, 1, permission, name)
+      student = Student.new(age, 1, permission, name)
       @person << student
 
     when 2
