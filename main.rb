@@ -26,13 +26,3 @@ def main
 end
 
 main
-
-
-
-
-
-
-
-
-
-
