@@ -1,8 +1,12 @@
-require_relative './name'
+require_relative 'name'
 
 class Person < Nameable
+  # getters
+  attr_reader :id, :parent_permission
+  attr_accessor :age, :name, :rentals
+
   # constructor
-  def initialize(age, name = 'Unknown', parent_permission: true)
+  def initialize(age, parent_permission, name = 'Unknown')
     super()
     # instance variables
     @id = Random.rand(1..1000)
@@ -11,10 +15,6 @@ class Person < Nameable
     @parent_permission = parent_permission
     @rentals = []
   end
-
-  # getters
-  attr_reader :id
-  attr_accessor :age, :name, :rentals
 
   # public methods
 
