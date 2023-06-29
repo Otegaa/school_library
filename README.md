@@ -71,6 +71,12 @@ Clone this repository to your desired folder:
 - GitHub: [@Otegaa](https://github.com/Otegaa)
 - LinkedIn: [blessing-ekiugbo](https://www.linkedin.com/in/blessing-ekiugbo/)
 
+👤 **Drissa Toure**
+
+- Twitter: [@touredri](https://twitter.com/touredri)
+- GitHub: [@touredri](https://github.com/touredri)
+- LinkedIn: [touredri](https://www.linkedin.com/in/touredri)
+
 ## 🔭 Future Features <a name="future-features"></a>
 
 - [ ] **[Add more complex methods for building the library]**
