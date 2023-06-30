@@ -32,6 +32,7 @@ class App
     @books.each { |book| puts "Title: #{book['title']}, Author: #{book['author']}" }
   end
 
+  # rubocop:disable Metrics/MethodLength
   def create_person
     puts ''
     print 'Enter 1 to add Student and 2 to add Teacher: '
@@ -64,7 +65,7 @@ class App
     @person = read_file('people.json')
     @person.each do |person|
       puts ''
-      puts "#{person['class']}"
+      puts(person['class'])
       puts "Name: #{person['name']}"
       puts "ID: #{person['id']}"
       puts "Age: #{person['age']}"
@@ -82,16 +83,16 @@ class App
     puts 'Select a book from below by number: '
     @books = read_file('books.json')
 
-    @books.each_with_index { |book, index|  puts "#{index} - Title: #{book['title']}, Author: #{book['author']}" }
+    @books.each_with_index { |book, index| puts "#{index} - Title: #{book['title']}, Author: #{book['author']}" }
     puts ''
     book_num = Input.new.user_input_to_i
     puts ''
 
     puts 'Select a person from below by number: '
     @person = read_file('people.json')
-    
+
     @person.each_with_index do |person, index|
-       puts "#{index} - Age: #{person['age']}, Name: #{person['name']}"
+      puts "#{index} - Age: #{person['age']}, Name: #{person['name']}"
     end
     puts ''
     person_num = Input.new.user_input_to_i
@@ -107,12 +108,12 @@ class App
     puts 'Success'
   end
 
+  # rubocop:enable Metrics/MethodLength
   def list_all_rentals
     rentals = read_file('rental.json')
     puts 'Enter the person ID to list rentals:'
     people = read_file('people.json')
-    @person.clear 
-    @rentals
+    @person.clear
     people.each_with_index do |person, _index|
       puts "#{person['id']} - Name: #{person['name']}, Age: #{person['age']}"
     end

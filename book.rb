@@ -11,7 +11,7 @@ class Book
     Rental.new(date, self, person)
   end
 
-    def to_hash
+  def to_hash
     {
       title: @title,
       author: @author
