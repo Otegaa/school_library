@@ -5,6 +5,14 @@ class Rental
     @date = date
     @book = book
     @person = person
-    book.rentals << self
+    # book.rentals << self
+  end
+
+  def to_hash
+    {
+      date: @date,
+      book: @book,
+      person: @person
+    }
   end
 end

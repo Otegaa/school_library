@@ -4,6 +4,7 @@ require_relative 'student'
 require_relative 'teacher'
 require_relative 'rental'
 require_relative 'input'
+require_relative 'preserve_data'
 
 class App
   attr_accessor :person, :books, :rentals
@@ -21,12 +22,14 @@ class App
     print 'Enter book author: '
     author = Input.new.user_input
     @books << Book.new(title, author)
+    write_file('books.json', @books)
     puts 'Success'
   end
 
   def list_all_books
-    puts ''
-    @books.each { |book| puts "Title: #{book.title}", "Author: #{book.author}" }
+    puts 'All books:'
+    @books = read_file('books.json')
+    @books.each { |book| puts "Title: #{book['title']}, Author: #{book['author']}" }
   end
 
   def create_person
@@ -51,22 +54,25 @@ class App
       @person << teacher
     end
 
+    write_file('people.json', @person)
+
     print 'Success'
   end
 
   def list_all_people
-    puts ''
+    puts 'All People:'
+    @person = read_file('people.json')
     @person.each do |person|
       puts ''
-      puts "[#{person.class}]"
-      puts "Name: #{person.name}"
-      puts "ID: #{person.id}"
-      puts "Age: #{person.age}"
+      puts "#{person['class']}"
+      puts "Name: #{person['name']}"
+      puts "ID: #{person['id']}"
+      puts "Age: #{person['age']}"
 
       if person.instance_of?(Teacher)
-        puts "Specialization: #{person.specialization}"
+        puts "Specialization: #{person['specialization']}"
       else
-        puts "Permission: #{person.parent_permission}"
+        puts "Permission: #{person['parent_permission']}"
       end
     end
   end
@@ -74,15 +80,18 @@ class App
   def add_rental
     puts ''
     puts 'Select a book from below by number: '
+    @books = read_file('books.json')
 
-    @books.each_with_index { |book, index| puts "(#{index}) Title: #{book.title}, Author: #{book.author}" }
+    @books.each_with_index { |book, index|  puts "#{index} - Title: #{book['title']}, Author: #{book['author']}" }
     puts ''
     book_num = Input.new.user_input_to_i
     puts ''
 
     puts 'Select a person from below by number: '
+    @person = read_file('people.json')
+    
     @person.each_with_index do |person, index|
-      puts "(#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+       puts "#{index} - Age: #{person['age']}, Name: #{person['name']}"
     end
     puts ''
     person_num = Input.new.user_input_to_i
@@ -93,28 +102,29 @@ class App
 
     rental = Rental.new(date, @books[book_num], @person[person_num])
     @rentals << rental
+    write_file('rental.json', @rentals)
     puts ''
     puts 'Success'
   end
 
   def list_all_rentals
-    puts ''
-    puts 'All IDs:'
-    @rentals.each do |rental|
-      puts rental.person.id if rental.person.id
+    rentals = read_file('rental.json')
+    puts 'Enter the person ID to list rentals:'
+    people = read_file('people.json')
+    @person.clear 
+    @rentals
+    people.each_with_index do |person, _index|
+      puts "#{person['id']} - Name: #{person['name']}, Age: #{person['age']}"
     end
-    puts ''
-
-    print 'Please select an ID to show more details: '
-    id = Input.new.user_input_to_i
-    puts ''
-
-    puts 'Rental(s) for this ID: '
-    @rentals.each do |rental|
-      if rental.person.id == id
-        puts "Date: #{rental.date} Book: #{rental.book.title} by #{rental.book.author}"
-      else
-        puts 'Person does not exist'
+    person_id = gets.chomp.to_i
+    rentals_available = rentals.select { |rental| rental['person']['id'] == person_id }
+    if rentals_available.empty?
+      puts "No rentals available for the person with ID #{person_id}."
+    else
+      puts "Listing rentals for the person with ID #{person_id}:"
+      rentals_available.each do |rental|
+        puts "Rental Date: #{rental['date']}"
+        puts
       end
     end
   end
