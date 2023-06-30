@@ -11,10 +11,10 @@ describe 'Person' do
   describe '#serialize' do
     it 'should return the correct hash' do
       expect(prs.serialize).to eq({
-        'name' => 'John Doe',
-        'age' => 17,
-        'id' => prs.id
-      })
+                                    'name' => 'John Doe',
+                                    'age' => 17,
+                                    'id' => prs.id
+                                  })
     end
   end
 end
