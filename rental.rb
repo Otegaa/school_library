@@ -14,6 +14,7 @@ class Rental
       person: @person
     }
   end
+
   def serialize
     {
       'date' => date,
