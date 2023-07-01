@@ -46,5 +46,10 @@ RSpec.describe Solver do
       allow(fizzbuzz).to receive(:fizzbuzz).with(15).and_return('fizzbuzz')
       expect(fizzbuzz.fizzbuzz(15)).to eq('fizzbuzz')
     end
+    it 'returns number as a string if number is in any other case' do
+      fizzbuzz = double('fizzbuzz')
+      allow(fizzbuzz).to receive(:fizzbuzz).with(7).and_return('7')
+      expect(fizzbuzz.fizzbuzz(7)).to eq('7')
+    end
   end
 end
