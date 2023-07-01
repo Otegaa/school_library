@@ -10,7 +10,6 @@ describe TrimmerDecorator do
       allow(nameable).to receive(:correct_name).and_return('Lorem ipsum dolor sit amet')
       expect(decorator.correct_name).to eq('Lorem ipsu')
     end
-    # rubocop:enable Metrics
     it 'returns the full name when it is shorter than or equal to 10 characters' do
       allow(nameable).to receive(:correct_name).and_return('John Doe')
       expect(decorator.correct_name).to eq('John Doe')
