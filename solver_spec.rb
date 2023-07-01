@@ -12,6 +12,11 @@ RSpec.describe Solver do
       allow(factorial).to receive(:factorial).with(6).and_return(720)
       expect(factorial.factorial(6)).to eq(720)
     end
+    it 'should raise an error if the number is negative' do
+      factorial = Double('factorial')
+      allow(factorial).to receive(:factorial).with(-1).and_raise('Number cannot be negative')
+      expect { factorial.factorial(-1) }.to raise_error('Number cannot be negative')
+    end
   end
   describe '#reverse' do
     it 'returns the reverse of a string' do
