@@ -1,6 +1,7 @@
 class Solver
   def factorial(number)
     raise 'Number cannot be negative' if number.negative?
+    return 1 if number.zero? 
 
     (1..number).reduce(:*) || 1
   end
